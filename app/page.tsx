@@ -1,6 +1,17 @@
+"use client"
+
 import Image from "next/image";
+import * as Schema from "@effect/schema/Schema"
+import * as Effect from "effect/Effect"
+import { useEffect, useState } from "react";
+const s = Schema.String
+
 
 export default function Home() {
+  const [a, seta] = useState("abc")
+  //useEffect(() => seta(Schema.decode(s)("hello").pipe(Effect.runSync)))
+  useEffect(() => seta(Schema.decodeSync(s)("hello")))
+
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
@@ -16,6 +27,7 @@ export default function Home() {
             rel="noopener noreferrer"
           >
             By{" "}
+            {a}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
