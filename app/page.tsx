@@ -5,11 +5,9 @@ import * as Schema from "@effect/schema/Schema"
 import * as Effect from "effect/Effect"
 import { useEffect, useState } from "react";
 
-const s = Schema.String
-
 //const makea = () => Effect.sync(() => "hello").pipe(Effect.runSync)
-const makea = () => Schema.decode(s)("hello").pipe(Effect.runSync)// small ParseResult.js module, bigger effect. 
-//const makea = () => Schema.decodeSync(s)("hello")// big ParseResult.js module, smaller effect.
+const makea = () => Schema.decode(Schema.String)("hello").pipe(Effect.runSync)// small ParseResult.js module, bigger effect. 
+//const makea = () => Schema.decodeSync(Schema.String)("hello")// big ParseResult.js module, smaller effect.
 
 export default function Home() {
   const [a, seta] = useState("abc")
