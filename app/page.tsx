@@ -4,13 +4,16 @@ import Image from "next/image";
 import * as Schema from "@effect/schema/Schema"
 import * as Effect from "effect/Effect"
 import { useEffect, useState } from "react";
+
 const s = Schema.String
 
+//const makea = () => Effect.sync(() => "hello").pipe(Effect.runSync)
+const makea = () => Schema.decode(s)("hello").pipe(Effect.runSync)// small ParseResult.js module, bigger effect. 
+//const makea = () => Schema.decodeSync(s)("hello")// big ParseResult.js module, smaller effect.
 
 export default function Home() {
   const [a, seta] = useState("abc")
-  //useEffect(() => seta(Schema.decode(s)("hello").pipe(Effect.runSync))) // small ParseResult.js module, bigger effect. 
-  useEffect(() => seta(Schema.decodeSync(s)("hello"))) // big ParseResult.js module, smaller effect.
+  useEffect(() => seta(makea()))
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
