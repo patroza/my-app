@@ -9,8 +9,8 @@ const s = Schema.String
 
 export default function Home() {
   const [a, seta] = useState("abc")
-  //useEffect(() => seta(Schema.decode(s)("hello").pipe(Effect.runSync)))
-  useEffect(() => seta(Schema.decodeSync(s)("hello")))
+  //useEffect(() => seta(Schema.decode(s)("hello").pipe(Effect.runSync))) // small ParseResult.js module, bigger effect. 
+  useEffect(() => seta(Schema.decodeSync(s)("hello"))) // big ParseResult.js module, smaller effect.
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
